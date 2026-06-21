@@ -1,0 +1,102 @@
+@import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@100,200,300,400,500,700,800,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Ponnala&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Global: Suppress blinking caret on all non-input elements ─────────── */
+
+/* 1. Hide caret everywhere by default */
+*:not(input):not(textarea):not([contenteditable="true"]):not([contenteditable=""]) {
+  caret-color: transparent;
+}
+
+/* 2. Restore caret only inside actual input fields */
+input,
+textarea,
+[contenteditable="true"],
+[contenteditable=""] {
+  caret-color: auto;
+}
+
+/* 3. Prevent text selection on interactive UI elements */
+a, button, label, nav,
+[role="button"],
+[role="menuitem"],
+[role="tab"] {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* 4. Correct cursor: pointer for clickable, default for plain text/divs */
+a, button, [role="button"] {
+  cursor: pointer;
+}
+
+body, div, p, h1, h2, h3, h4, h5, h6, span, li, header, footer, section, article {
+  cursor: default;
+}
+
+/* ─── Component styles ───────────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  font-family: 'Cabinet Grotesk', sans-serif;
+}
+
+@layer components {
+  .input {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-400 outline-none;
+  }
+
+  .btn-primary {
+    @apply bg-yellow-400 px-6 py-3 rounded-xl font-semibold hover:bg-yellow-500 transition;
+  }
+
+  .btn-secondary {
+    @apply border px-6 py-3 rounded-xl hover:bg-gray-100 transition;
+  }
+
+  .checkbox {
+    @apply flex items-center gap-2 cursor-pointer;
+  }
+
+  .date-icon-left::-webkit-calendar-picker-indicator {
+    position: absolute;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .date-icon-left::-webkit-datetime-edit {
+    padding-left: 24px;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-slideDown {
+  animation: slideDown 0.4s ease-out forwards;
+}
